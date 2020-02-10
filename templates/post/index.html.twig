@@ -14,6 +14,19 @@
         <li>Your template at <code><a href="{{ '/Users/digital/Documents/php/Symfony/symfony_blog/templates/post/index.html.twig'|file_link(0) }}">templates/post/index.html.twig</a></code></li>
     </ul>
 
-    {% for () %}
+    {% if posts %}
+        <h2>Articles</h2>
+        <ul>
+            {% for post in posts %}
+                <li>{{ post.title }}</li>
+                {{ dump(post) }}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h2>Pas d'arcticles à afficher</h2>
+    {% endif %}
+
+
+
 </div>
 {% endblock %}

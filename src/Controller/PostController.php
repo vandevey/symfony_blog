@@ -18,7 +18,7 @@ class PostController extends AbstractController
         $postList = $entityManager->getRepository(Post::class)->findAll();
         return $this->render('post/index.html.twig', [
             'controller_name' => 'PostController',
-            'posts' => '$postList'
+            'posts' => $postList
         ]);
     }
 }
