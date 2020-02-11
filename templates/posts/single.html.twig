@@ -6,6 +6,24 @@
 </head>
 <body>
     <h1>{{ post.title }}</h1>
+    <span>{{ post.createdAt|date("m/d/Y")  }}</span>
+    <span>{{ post.author }}</span>
 
+    <div>
+        {{ post.content }}
+    </div>
+
+    {% if commentList %}
+        <h2>Comments</h2>
+        <ul>
+            {% for comment in commentList %}
+                <li>
+                    <span>{{ comment.author }}</span>
+                    <span>{{ comment.createdAt|date("m/d/Y")  }}</span>
+                    <p>{{ comment.content }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Post;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,10 +27,13 @@ class  PostsController extends AbstractController
     /**
      * @Route("/posts/{id}", name="single")
      */
-    public function article(Post $post, EntityManagerInterface $entityManager, int $id)
+    public function article(Post $post, EntityManagerInterface $entityManager)
     {
-        $postList = $entityManager->getRepository(Post::class)->findPublished();
-        return $this->render('posts/single.html.twig', ['post' => $post]);
-
+        $commentList = $entityManager->getRepository(Comment::class)->relatedComments($post->getId());
+        return $this->render('posts/single.html.twig',
+            [
+                'post' => $post,
+                'commentList' => $commentList
+            ]);
     }
 }

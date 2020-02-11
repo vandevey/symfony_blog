@@ -26,19 +26,19 @@ class CommentRepository extends ServiceEntityRepository
     // /**
     //  * @return Relation[] Returns an array of Relation objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function relatedComments($id)
     {
-        return $this->createQueryBuilder('r')
-            ->andWhere('r.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('r.id', 'ASC')
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.post = :id')
+            ->orderBy('c.createdAt', 'DESC')
+            ->setParameter("id",$id)
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
 
     /*
     public function findOneBySomeField($value): ?Relation
